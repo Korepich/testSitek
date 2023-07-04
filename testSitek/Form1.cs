@@ -29,14 +29,15 @@ namespace testSitek
             {
                 textFirstPath.Text = openFileDialog1.FileName;
                 //labelFirstFile.Text = "Имя первого файла: " + Path.GetFileName(openFileDialog1.FileName);
-                if (Path.GetFileName(openFileDialog1.FileName) == "Тестовое задание - РКК.txt")
+                path1 = openFileDialog1.FileName;
+                /*if (Path.GetFileName(openFileDialog1.FileName) == "Тестовое задание - РКК.txt")
                 {
                     path1 = openFileDialog1.FileName;
                 }
                 else
                 {
                     path2 = openFileDialog1.FileName;
-                }
+                }*/
             }
         }
 
@@ -46,14 +47,15 @@ namespace testSitek
             {
                 textSecondPath.Text = openFileDialog1.FileName;
                 //labelSecondFile.Text = "Имя второго файла: " + Path.GetFileName(openFileDialog1.FileName);
-                if (Path.GetFileName(openFileDialog1.FileName) == "Тестовое задание - Обращения.txt")
+                path2 = openFileDialog1.FileName;
+                /*if (Path.GetFileName(openFileDialog1.FileName) == "Тестовое задание - Обращения.txt")
                 {
                     path2 = openFileDialog1.FileName;
                 }
                 else
                 {
                     path1 = openFileDialog1.FileName;
-                }
+                }*/
             }
         }
 
