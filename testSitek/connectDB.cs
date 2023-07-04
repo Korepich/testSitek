@@ -33,7 +33,5 @@ namespace testSitek
             return new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=FktRcKY12;Database=testSitek");
         
         }*/
-
-
     }
 }
