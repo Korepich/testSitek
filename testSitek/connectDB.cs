@@ -17,7 +17,7 @@ namespace testSitek
         public void connectSql()
         {
             npgsqlConnection = new NpgsqlConnection(connectionString);
-            npgsqlConnection.Open();
+            /*npgsqlConnection.Open();
             if ((npgsqlConnection.State == ConnectionState.Open))
             {
                 Console.WriteLine("opened");
@@ -25,13 +25,7 @@ namespace testSitek
             else
             {
                 Console.WriteLine("closed");
-            }
+            }*/
         }
-
-        /*public static NpgsqlConnection GetConnection() 
-        {
-            return new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=FktRcKY12;Database=testSitek");
-        
-        }*/
     }
 }

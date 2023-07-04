@@ -19,9 +19,7 @@ namespace testSitek
 
             object missing = Type.Missing;
 
-            Word._Document word_doc = word_app.Documents.Add(
-
-                ref missing, ref missing, ref missing, ref missing);
+            Word._Document word_doc = word_app.Documents.Add(ref missing, ref missing, ref missing, ref missing);
 
             Word.Paragraph para = word_doc.Paragraphs.Add(ref missing);
 

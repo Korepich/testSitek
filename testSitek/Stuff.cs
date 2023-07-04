@@ -14,14 +14,14 @@ namespace testSitek
 
         public Stuff(string director_, string executor_, int count_)
         {
-            Director = director_;
-            Executor = executor_;
+            Director = director_;   //RK= rk_
+            Executor = executor_;   //Otv= otv_
             Count = count_;
         }
 
         public Stuff()
         {
-            Director = "";
+            Director = "";  
             Executor = "";
             Count = 0;
         }

@@ -43,8 +43,8 @@ namespace testSitek
                     {
                         stuff.Executor = line.Substring(line.IndexOf('\t') + 1, ((line.IndexOf('.') + 2) - line.IndexOf('\t')));
                     }
-                    Db_CMD cmd = new Db_CMD(); // можно закинуть наверх, а потом вызывать cmdRKK
-                    cmd.addRKK(stuff.Executor);
+                    CommandsDB cmd = new CommandsDB(); // можно закинуть наверх, а потом вызывать cmdRKK
+                    cmd.addRCC(stuff.Executor);
                 }
 
             }
@@ -84,8 +84,8 @@ namespace testSitek
                     {
                         stuff.Executor = line.Substring(line.IndexOf('\t') + 1, ((line.IndexOf('.') + 2) - line.IndexOf('\t')));
                     }
-                    Db_CMD cmd = new Db_CMD();
-                    cmd.addObr(stuff.Executor);
+                    CommandsDB cmd = new CommandsDB();
+                    cmd.addReq(stuff.Executor);
                 }
             }
         }
