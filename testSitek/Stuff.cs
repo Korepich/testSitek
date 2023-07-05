@@ -14,8 +14,8 @@ namespace testSitek
 
         public Stuff(string director_, string executor_, int count_)
         {
-            Director = director_;   //RK= rk_
-            Executor = executor_;   //Otv= otv_
+            Director = director_;
+            Executor = executor_;
             Count = count_;
         }
 

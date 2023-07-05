@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
 using static testSitek.Form1;
+using static testSitek.CommandsDB;
 using Microsoft.Office.Interop.Word;
 using Word = Microsoft.Office.Interop.Word;
 
@@ -16,6 +17,7 @@ namespace testSitek
         public void work(DataGridView dg)
         {
             Word._Application word_app = new Word.ApplicationClass();
+            //Word.Application word_app = new Word.ApplicationClass();
 
             object missing = Type.Missing;
 
@@ -35,17 +37,17 @@ namespace testSitek
             para.Range.Font.Name = "Arial";
             para.Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
             para.Range.Font.Bold = 0;
-            para.Range.Text = "Не исполнено в срок " + Db_CMD.total + " документов, из них:";
+            para.Range.Text = "Не исполнено в срок " + CommandsDB.total + " документов, из них:";
             para.Range.InsertParagraphAfter();
             Word.Range rng = word_doc.Range(76, 79);
             rng.Font.Bold = 2;
 
-            para.Range.Text = "- количество неисполненных входящих документов: " + Db_CMD.sumRKK + ";";
+            para.Range.Text = "- количество неисполненных входящих документов: " + CommandsDB.sumRCC + ";";
             para.Range.InsertParagraphAfter();
             Word.Range rng1 = word_doc.Range(148, 151);
             rng1.Font.Bold = 2;
 
-            para.Range.Text = "- количество неисполненных письменных обращений граждан: " + Db_CMD.sumObr + ";";
+            para.Range.Text = "- количество неисполненных письменных обращений граждан: " + CommandsDB.sumReq + ";";
             para.Range.InsertParagraphAfter();
             Word.Range rng2 = word_doc.Range(210, 213);
             rng2.Font.Bold = 2;
@@ -55,7 +57,7 @@ namespace testSitek
             Word.Range rng3 = word_doc.Range(226, 258);
             rng3.Font.Bold = 2;
 
-            rng.Tables.Add(word_doc.Paragraphs[word_doc.Paragraphs.Count].Range, Db_CMD.count, 5, ref missing, ref missing);
+            rng.Tables.Add(word_doc.Paragraphs[word_doc.Paragraphs.Count].Range, CommandsDB.count, 5, ref missing, ref missing);
             Word.Table tbl = word_doc.Tables[word_doc.Tables.Count];
 
 

@@ -34,13 +34,16 @@
             this.speedAlg = new System.Windows.Forms.TextBox();
             this.choiceSorting = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.createReport = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.textFirstPath = new System.Windows.Forms.TextBox();
             this.textSecondPath = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.perform = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // firstChoice
@@ -69,7 +72,7 @@
             // 
             // speedAlg
             // 
-            this.speedAlg.Location = new System.Drawing.Point(179, 202);
+            this.speedAlg.Location = new System.Drawing.Point(12, 422);
             this.speedAlg.Name = "speedAlg";
             this.speedAlg.Size = new System.Drawing.Size(100, 20);
             this.speedAlg.TabIndex = 2;
@@ -83,11 +86,12 @@
             "По количеству РКК",
             "По обращениям",
             "По общему количеству"});
-            this.choiceSorting.Location = new System.Drawing.Point(12, 109);
+            this.choiceSorting.Location = new System.Drawing.Point(12, 211);
             this.choiceSorting.MaxDropDownItems = 4;
             this.choiceSorting.Name = "choiceSorting";
             this.choiceSorting.Size = new System.Drawing.Size(159, 21);
             this.choiceSorting.TabIndex = 3;
+            this.choiceSorting.SelectedIndexChanged += new System.EventHandler(this.choiceSorting_SelectedIndexChanged);
             this.choiceSorting.Click += new System.EventHandler(this.sortSelect_Click);
             // 
             // label1
@@ -95,21 +99,21 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(14, 82);
+            this.label1.Location = new System.Drawing.Point(14, 184);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(96, 16);
             this.label1.TabIndex = 4;
             this.label1.Text = "Сортировать:";
             // 
-            // button1
+            // createReport
             // 
-            this.button1.Location = new System.Drawing.Point(12, 161);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(142, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Создать отчет";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.createReport_Click);
+            this.createReport.Location = new System.Drawing.Point(12, 345);
+            this.createReport.Name = "createReport";
+            this.createReport.Size = new System.Drawing.Size(142, 23);
+            this.createReport.TabIndex = 5;
+            this.createReport.Text = "Создать отчет";
+            this.createReport.UseVisualStyleBackColor = true;
+            this.createReport.Click += new System.EventHandler(this.createReport_Click);
             // 
             // label2
             // 
@@ -145,7 +149,7 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(13, 202);
+            this.label3.Location = new System.Drawing.Point(13, 386);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(159, 20);
             this.label3.TabIndex = 9;
@@ -162,18 +166,37 @@
             this.label4.TabIndex = 10;
             this.label4.Text = "Путь:";
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(194, 82);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(693, 477);
+            this.dataGridView1.TabIndex = 11;
+            // 
+            // perform
+            // 
+            this.perform.Location = new System.Drawing.Point(12, 98);
+            this.perform.Name = "perform";
+            this.perform.Size = new System.Drawing.Size(142, 32);
+            this.perform.TabIndex = 12;
+            this.perform.Text = "Выполнить";
+            this.perform.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(904, 503);
+            this.ClientSize = new System.Drawing.Size(912, 588);
+            this.Controls.Add(this.perform);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textSecondPath);
             this.Controls.Add(this.textFirstPath);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.createReport);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.choiceSorting);
             this.Controls.Add(this.speedAlg);
@@ -183,6 +206,7 @@
             this.Name = "Form1";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Text = "Cоздание отчета";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -195,13 +219,15 @@
         private System.Windows.Forms.TextBox speedAlg;
         private System.Windows.Forms.ComboBox choiceSorting;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button createReport;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.TextBox textFirstPath;
         private System.Windows.Forms.TextBox textSecondPath;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button perform;
     }
 }
 

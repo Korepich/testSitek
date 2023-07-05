@@ -33,7 +33,7 @@ namespace testSitek
             }
             else
             {
-                NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO [Table] (Executor, RCC, Obrach) VALUES (@Executor, 1, 0)", db.npgsqlConnection);
+                NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO [Table] (Executor, RCC, Appeals) VALUES (@Executor, 1, 0)", db.npgsqlConnection);
                 cmd.Parameters.AddWithValue("Executor", executor_);
                 cmd.ExecuteNonQuery();
             }
@@ -50,13 +50,13 @@ namespace testSitek
             command.Parameters.AddWithValue("Executor", executor_);
             if ((int)command.ExecuteScalar() != 0)
             {
-                NpgsqlCommand cmd = new NpgsqlCommand("UPDATE [Table] SET Obrach = Obrach + 1 WHERE Executor=@Executor", db.npgsqlConnection);
+                NpgsqlCommand cmd = new NpgsqlCommand("UPDATE [Table] SET Appeals = Appeals + 1 WHERE Executor=@Executor", db.npgsqlConnection);
                 cmd.Parameters.AddWithValue("Executor", executor_);
                 cmd.ExecuteNonQuery();
             }
             else
             {
-                NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO [Table] (Executor, Obrach, RCC) VALUES (@Executor, 1, 0)", db.npgsqlConnection);
+                NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO [Table] (Executor, Appeals, RCC) VALUES (@Executor, 1, 0)", db.npgsqlConnection);
                 cmd.Parameters.AddWithValue("Executor", executor_);
                 cmd.ExecuteNonQuery();
             }
@@ -67,12 +67,13 @@ namespace testSitek
         {
             List<int> list = new List<int>();
             List<int> list1 = new List<int>();
-            DbConnect db = new DbConnect();
-            db.ConnectSql();
-            db.sqlConnection.Open();
+            ConnectDB db = new ConnectDB();
+            db.connectSql();
+            db.npgsqlConnection.Open();
 
-            SqlCommand command = new SqlCommand("SELECT RKK FROM [Table]", db.npgsqlConnection);
-            SqlDataReader reader = command.ExecuteReader();
+            NpgsqlCommand command = new NpgsqlCommand("SELECT RCC FROM [Table]", db.npgsqlConnection);
+            NpgsqlDataReader reader = command.ExecuteReader();
+
 
             if (reader.HasRows)
             {
@@ -84,8 +85,8 @@ namespace testSitek
             }
             reader.Close();
 
-            SqlCommand command1 = new SqlCommand("SELECT Obrach FROM [Table]", db.npgsqlConnection);
-            SqlDataReader reader1 = command1.ExecuteReader();
+            NpgsqlCommand command1 = new NpgsqlCommand("SELECT Appeals FROM [Table]", db.npgsqlConnection);
+            NpgsqlDataReader reader1 = command1.ExecuteReader();
 
             if (reader1.HasRows)
             {
@@ -108,8 +109,8 @@ namespace testSitek
             for (int i = 0; i < list.Count; i++)
             {
                 int id = i + 1;
-                SqlCommand command2 = new SqlCommand("UPDATE [Table] SET Kolvo = @Kolvo WHERE Id = @Id", db.npgsqlConnection);
-                command2.Parameters.AddWithValue("Kolvo", list[i]);
+                NpgsqlCommand command2 = new NpgsqlCommand("UPDATE [Table] SET Amount = @Amount WHERE Id = @Id", db.npgsqlConnection);
+                command2.Parameters.AddWithValue("Amount", list[i]);
                 command2.Parameters.AddWithValue("Id", id);
                 command2.ExecuteNonQuery();
             }
@@ -122,7 +123,7 @@ namespace testSitek
             db.connectSql();
             db.npgsqlConnection.Open();
 
-            SqlCommand command = new SqlCommand("TRUNCATE TABLE [Table]", db.npgsqlConnection);
+            NpgsqlCommand command = new NpgsqlCommand("TRUNCATE TABLE [Table]", db.npgsqlConnection);
             command.ExecuteNonQuery();
 
             db.npgsqlConnection.Close();
@@ -134,7 +135,7 @@ namespace testSitek
             db.connectSql();
             db.npgsqlConnection.Open();
 
-            SqlDataAdapter command = new SqlDataAdapter("SELECT * FROM [Table]", db.npgsqlConnection);
+            NpgsqlDataAdapter command = new NpgsqlDataAdapter("SELECT * FROM [Table]", db.npgsqlConnection);
 
             db.npgsqlConnection.Close();
         }

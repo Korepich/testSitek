@@ -9,7 +9,7 @@ namespace testSitek
 {
     internal class ReadFile
     {
-        public void readRKK(string path)
+        public void readRCC(string path)
         {
             using (StreamReader reader = new StreamReader(path))
             {
@@ -43,7 +43,7 @@ namespace testSitek
                     {
                         stuff.Executor = line.Substring(line.IndexOf('\t') + 1, ((line.IndexOf('.') + 2) - line.IndexOf('\t')));
                     }
-                    CommandsDB cmd = new CommandsDB(); // можно закинуть наверх, а потом вызывать cmdRKK
+                    CommandsDB cmd = new CommandsDB(); 
                     cmd.addRCC(stuff.Executor);
                 }
 
@@ -51,7 +51,7 @@ namespace testSitek
 
         }
 
-        public void readObr(string path)
+        public void readAppeals(string path)
         {
             using (StreamReader reader = new StreamReader(path))
             {
