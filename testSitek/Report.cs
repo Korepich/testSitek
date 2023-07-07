@@ -17,13 +17,12 @@ namespace testSitek
         public void work(DataGridView dg)
         {
             Word._Application word_app = new Word.ApplicationClass();
-            //Word.Application word_app = new Word.ApplicationClass();
 
             object missing = Type.Missing;
 
-            Word._Document word_doc = word_app.Documents.Add(ref missing, ref missing, ref missing, ref missing);
+            Word.Document word_doc = word_app.Documents.Add(ref missing, ref missing, ref missing, ref missing);
 
-            Word.Paragraph para = word_doc.Paragraphs.Add(ref missing);
+            Paragraph para = word_doc.Paragraphs.Add(ref missing);
 
             para.Range.Font.Size = 14;
             para.Range.Font.Bold = 2;
