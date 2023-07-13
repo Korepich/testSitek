@@ -12,8 +12,7 @@ namespace testSitek
     internal class ConnectDB
     {
         public SqlConnection npgsqlConnection;
-        public static string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename='|DataDirectory|\\Database1.mdf';Integrated Security=True";
-
+        public static string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='|DataDirectory|\Database1.mdf';Integrated Security=True";
         public void connectSql()
         {
             npgsqlConnection = new SqlConnection(connectionString);

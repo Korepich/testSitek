@@ -125,7 +125,7 @@ namespace testSitek
                 db.connectSql();
                 db.npgsqlConnection.Open();
 
-                SqlDataAdapter dataAdapter = new SqlDataAdapter("SELECT * FROM public.\"ReportTable\"", db.npgsqlConnection);
+                SqlDataAdapter dataAdapter = new SqlDataAdapter("SELECT * FROM [Table]", db.npgsqlConnection);
                 DataSet dataSet = new DataSet();
                 dataAdapter.Fill(dataSet);
 
