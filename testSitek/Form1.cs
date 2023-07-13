@@ -71,7 +71,7 @@ namespace testSitek
 
         private void choiceSorting_SelectedIndexChanged(object sender, EventArgs e)
         {
-            NpgsqlCommand command = new NpgsqlCommand();
+            SqlCommand command = new SqlCommand();
             switch (choiceSorting.SelectedIndex)
             {
                 case 0:
@@ -125,7 +125,7 @@ namespace testSitek
                 db.connectSql();
                 db.npgsqlConnection.Open();
 
-                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("SELECT * FROM public.\"ReportTable\"", db.npgsqlConnection);
+                SqlDataAdapter dataAdapter = new SqlDataAdapter("SELECT * FROM public.\"ReportTable\"", db.npgsqlConnection);
                 DataSet dataSet = new DataSet();
                 dataAdapter.Fill(dataSet);
 

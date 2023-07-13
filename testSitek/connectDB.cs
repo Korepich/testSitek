@@ -11,12 +11,12 @@ namespace testSitek
 {
     internal class ConnectDB
     {
-        public NpgsqlConnection npgsqlConnection;
-        public static string connectionString = "Server=127.0.0.1;Port=5432;Database=testSitek;User Id=postgres;Password=FktRcKY12;";
+        public SqlConnection npgsqlConnection;
+        public static string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename='|DataDirectory|\\Database1.mdf';Integrated Security=True";
 
         public void connectSql()
         {
-            npgsqlConnection = new NpgsqlConnection(connectionString);
+            npgsqlConnection = new SqlConnection(connectionString);
             /*npgsqlConnection.Open();
             if ((npgsqlConnection.State == ConnectionState.Open))
             {

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Npgsql;
 using System.CodeDom.Compiler;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace testSitek
 {
@@ -23,17 +24,17 @@ namespace testSitek
             db.connectSql();
             db.npgsqlConnection.Open();
 
-            NpgsqlCommand command = new NpgsqlCommand("SELECT COUNT(*) FROM public.\"ReportTable\" WHERE \"Executor\"=@Executor", db.npgsqlConnection);
+            SqlCommand command = new SqlCommand("SELECT COUNT(*) FROM ReportTable WHERE Executor=@Executor", db.npgsqlConnection);
             command.Parameters.AddWithValue("Executor", executor_);
             if ((long)command.ExecuteScalar() != 0)
             {
-                NpgsqlCommand cmd = new NpgsqlCommand("UPDATE public.\"ReportTable\" SET \"RCC\" = \"RCC\" + 1 WHERE \"Executor\"=@Executor", db.npgsqlConnection);
+                SqlCommand cmd = new SqlCommand("UPDATE ReportTable SET RCC = RCC + 1 WHERE Executor=@Executor", db.npgsqlConnection);
                 cmd.Parameters.AddWithValue("Executor", executor_);
                 cmd.ExecuteNonQuery();
             }
             else
             {
-                NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO public.\"ReportTable\" (\"Executor\", \"RCC\", \"Appeals\") VALUES (@Executor, 1, 0)", db.npgsqlConnection);
+                SqlCommand cmd = new SqlCommand("INSERT INTO ReportTable (Executor, RCC, Appeals) VALUES (@Executor, 1, 0)", db.npgsqlConnection);
                 cmd.Parameters.AddWithValue("Executor", executor_);
                 cmd.ExecuteNonQuery();
             }
@@ -46,17 +47,17 @@ namespace testSitek
             db.connectSql();
             db.npgsqlConnection.Open();
 
-            NpgsqlCommand command = new NpgsqlCommand("SELECT COUNT(*) FROM public.\"ReportTable\" WHERE \"Executor\"=@Executor", db.npgsqlConnection);
+            SqlCommand command = new SqlCommand("SELECT COUNT(*) FROM ReportTable WHERE Executor=@Executor", db.npgsqlConnection);
             command.Parameters.AddWithValue("Executor", executor_);
             if ((long)command.ExecuteScalar() != 0)
             {
-                NpgsqlCommand cmd = new NpgsqlCommand("UPDATE public.\"ReportTable\" SET \"Appeals\" = \"Appeals\" + 1 WHERE \"Executor\"=@Executor", db.npgsqlConnection);
+                SqlCommand cmd = new SqlCommand("UPDATE ReportTable SET Appeals = Appeals + 1 WHERE Executor=@Executor", db.npgsqlConnection);
                 cmd.Parameters.AddWithValue("Executor", executor_);
                 cmd.ExecuteNonQuery();
             }
             else
             {
-                NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO public.\"ReportTable\" (\"Executor\", \"Appeals\", \"RCC\") VALUES (@Executor, 1, 0)", db.npgsqlConnection);
+                SqlCommand cmd = new SqlCommand("INSERT INTO ReportTable (Executor, Appeals, RCC) VALUES (@Executor, 1, 0)", db.npgsqlConnection);
                 cmd.Parameters.AddWithValue("Executor", executor_);
                 cmd.ExecuteNonQuery();
             }
@@ -71,8 +72,8 @@ namespace testSitek
             db.connectSql();
             db.npgsqlConnection.Open();
 
-            NpgsqlCommand command = new NpgsqlCommand("SELECT \"ID\", \"RCC\" FROM public.\"ReportTable\"", db.npgsqlConnection);
-            NpgsqlDataReader reader = command.ExecuteReader();
+            SqlCommand command = new SqlCommand("SELECT ID, RCC FROM ReportTable", db.npgsqlConnection);
+            SqlDataReader reader = command.ExecuteReader();
 
             if (reader.HasRows)
             {
@@ -84,8 +85,8 @@ namespace testSitek
             }
             reader.Close();
 
-            NpgsqlCommand command1 = new NpgsqlCommand("SELECT \"ID\", \"Appeals\" FROM public.\"ReportTable\"", db.npgsqlConnection);
-            NpgsqlDataReader reader1 = command1.ExecuteReader();
+            SqlCommand command1 = new SqlCommand("SELECT ID, Appeals FROM ReportTable", db.npgsqlConnection);
+            SqlDataReader reader1 = command1.ExecuteReader();
 
             if (reader1.HasRows)
             {
@@ -108,7 +109,7 @@ namespace testSitek
             for (int i = 1; i <= list.Count; i++)
             {
                 //int id = i + 1;
-                NpgsqlCommand command2 = new NpgsqlCommand("UPDATE public.\"ReportTable\" SET \"Amount\" = @Amount WHERE \"ID\" = @ID", db.npgsqlConnection);
+                SqlCommand command2 = new SqlCommand("UPDATE ReportTable SET Amount = @Amount WHERE ID = @ID", db.npgsqlConnection);
                 command2.Parameters.AddWithValue("Amount", list[i]);
                 command2.Parameters.AddWithValue("ID", i);
                 command2.ExecuteNonQuery();
@@ -122,7 +123,7 @@ namespace testSitek
             db.connectSql();
             db.npgsqlConnection.Open();
 
-            NpgsqlCommand command = new NpgsqlCommand("TRUNCATE ONLY public.\"ReportTable\" RESTART IDENTITY", db.npgsqlConnection);
+            SqlCommand command = new SqlCommand("TRUNCATE ONLY ReportTable RESTART IDENTITY", db.npgsqlConnection);
             command.ExecuteNonQuery();
 
             db.npgsqlConnection.Close();
@@ -134,11 +135,9 @@ namespace testSitek
             db.connectSql();
             db.npgsqlConnection.Open();
 
-            NpgsqlDataAdapter command = new NpgsqlDataAdapter("SELECT * FROM public.\"ReportTable\"", db.npgsqlConnection);
+            SqlCommand command = new SqlCommand("SELECT * FROM ReportTable", db.npgsqlConnection);
 
             db.npgsqlConnection.Close();
         }
-
-
     }
 }
